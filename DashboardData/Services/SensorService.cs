@@ -99,5 +99,19 @@ namespace DashboardData.Services
         {
             return await _dbContext.Sensors.CountAsync();
         }
+
+        public async Task<List<LocationStat>> GetAverageValueByLocationAsync()
+        {
+            // EF Core traduit ceci en : SELECT Location, AVG(Value) FROM Sensors GROUP BY Location
+            return await _dbContext.Sensors
+                .Include(s => s.Location)
+                .GroupBy(s => s.Location.Name)
+                .Select(g => new LocationStat 
+                { 
+                    LocationName = g.Key ?? "Inconnu", 
+                    AverageValue = g.Average(s => s.Value) 
+                })
+                .ToListAsync();
+        }
     }
 }

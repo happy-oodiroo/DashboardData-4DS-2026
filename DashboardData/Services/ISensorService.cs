@@ -14,6 +14,7 @@ namespace DashboardData.Services
         Task<int> GetTotalCountAsync();
         Task<double> GetAverageValueAsync();
         Task<double> GetMaxValueAsync();
+        Task<List<LocationStat>> GetAverageValueByLocationAsync();
 
     }
 }

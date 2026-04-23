@@ -29,4 +29,10 @@ namespace DashboardData.Models
         // One-to-Many relationship with SensorValueHistor: 1 sensor can have multiple historical values
         public ICollection<SensorValueHistory> SensorValueHistories { get; set; } = new List<SensorValueHistory>();
     }
+
+    public class LocationStat
+    {
+        public string LocationName { get; set; }
+        public double AverageValue { get; set; }
+    }
 }

@@ -3,6 +3,7 @@ using DashboardData.Data;
 using DashboardData.Models;
 using DashboardData.Services;
 using Microsoft.EntityFrameworkCore;
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Register the SensorService as a scoped service, so it can be injected into components and other services
 builder.Services.AddScoped<ISensorService, SensorService>();
+builder.Services.AddRadzenComponents();
 
 var app = builder.Build();
 
